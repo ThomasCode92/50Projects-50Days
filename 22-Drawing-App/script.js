@@ -1,10 +1,17 @@
 const canvas = document.getElementById('canvas');
+const increaseBtn = document.getElementById('increase');
+const decreaseBtn = document.getElementById('decrease');
+const sizeElement = document.getElementById('size');
+const colorElement = document.getElementById('color');
+const clearElement = document.getElementById('clear');
+
+colorElement.value = 'black';
 
 let x;
 let y;
 let isPressed = false;
-let size = 20;
-let color = 'black';
+let size = 10;
+let color = colorElement.value;
 
 const context = canvas.getContext('2d');
 
@@ -51,5 +58,32 @@ function drawLine(x1, y1, x2, y2) {
   context.stroke();
 }
 
-drawCircle(100, 200);
-drawLine(300, 300, 300, 500);
+function updateSizeOnScreen() {
+  sizeElement.innerText = size;
+}
+
+increaseBtn.addEventListener('click', () => {
+  size += 5;
+
+  if (size > 50) {
+    size = 50;
+  }
+
+  updateSizeOnScreen();
+});
+
+decreaseBtn.addEventListener('click', () => {
+  size -= 5;
+
+  if (size < 5) {
+    size = 5;
+  }
+
+  updateSizeOnScreen();
+});
+
+colorElement.addEventListener('change', event => (color = event.target.value));
+
+clearElement.addEventListener('click', () =>
+  context.clearRect(0, 0, canvas.width, canvas.height)
+);
