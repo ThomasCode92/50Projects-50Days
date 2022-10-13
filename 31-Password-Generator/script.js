@@ -5,6 +5,7 @@ const lowercaseElement = document.getElementById('lowercase');
 const numbersElement = document.getElementById('numbers');
 const symbolsElement = document.getElementById('symbols');
 const generateElement = document.getElementById('generate');
+const clipboardElement = document.getElementById('clipboard');
 
 generateElement.addEventListener('click', () => {
   const length = parseInt(lengthElement.value);
@@ -20,6 +21,15 @@ generateElement.addEventListener('click', () => {
     hasSymbol,
     length
   );
+});
+
+clipboardElement.addEventListener('click', () => {
+  const password = resultElement.innerText;
+
+  if (!password) return;
+
+  navigator.clipboard.writeText(password);
+  alert('Password copied to clipboard!');
 });
 
 function generatePassword(lower, upper, number, symbol, length) {
