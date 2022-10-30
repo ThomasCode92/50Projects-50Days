@@ -24,7 +24,7 @@ ratingsContainerElement.addEventListener('click', event => {
   }
 });
 
-sendBtnElement.addEventListener('click', e => {
+sendBtnElement.addEventListener('click', event => {
   panelElement.innerHTML = `
     <i class="fas fa-heart"></i>
     <strong>Thank You!</strong>
